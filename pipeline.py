@@ -84,14 +84,22 @@ async def run(
             return []
 
     results = await asyncio.gather(*[fetch_one(c) for c in _CONNECTORS])
-    for evs in results:
+    for c, evs in zip(_CONNECTORS, results):
         events_all.extend(evs)
+        sid = getattr(c, "source_id", "?")
+        logger.info("Source %s: %d events", sid, len(evs))
 
     events_scanned_total = len(events_all)
+    logger.info(
+        "Fetched %d events total; %d artists to match",
+        events_scanned_total,
+        len(artists),
+    )
 
     # 3) Match
     matches = match_events_to_artists(events_all, artists)
     matches_total = len(matches)
+    logger.info("Match result: %d matches (before dedupe)", matches_total)
 
     # 4) Dedupe (skip_insert when dry_run so we don't record)
     to_notify = await filter_new_matches(matches, skip_insert=dry_run)
