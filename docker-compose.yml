@@ -1,0 +1,15 @@
+# Run the bot 24/7 with: docker compose up -d
+# Logs: docker compose logs -f
+# Stop: docker compose down
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - bot-data:/data
+    environment:
+      - DATABASE_PATH=/data/bot.db
+
+volumes:
+  bot-data:

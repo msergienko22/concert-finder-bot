@@ -1,0 +1,32 @@
+# Systemd unit: run the bot 24/7 on a Linux server or VPS
+#
+# 1. Copy to systemd:
+#    sudo cp deploy/concert-tracker.service /etc/systemd/system/
+#
+# 2. Edit and set your paths and ensure .env exists:
+#    sudo nano /etc/systemd/system/concert-tracker.service
+#
+# 3. Enable and start:
+#    sudo systemctl daemon-reload
+#    sudo systemctl enable concert-tracker
+#    sudo systemctl start concert-tracker
+#    sudo systemctl status concert-tracker
+#
+# Logs: journalctl -u concert-tracker -f
+
+[Unit]
+Description=Amsterdam Concert Tracker Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=YOUR_USER
+WorkingDirectory=/path/to/cursor-music-bot
+EnvironmentFile=/path/to/cursor-music-bot/.env
+ExecStart=/usr/bin/python3 main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
