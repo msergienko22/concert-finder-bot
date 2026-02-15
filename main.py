@@ -32,11 +32,13 @@ def main() -> None:
     from sources.afas_live import AFASLiveConnector
     from sources.ziggo_dome import ZiggoDomeConnector
     from sources.ticketmaster_nl import TicketmasterNLConnector
+    from sources.johan_cruijff_arena import JohanCruijffArenaConnector
     register_connector(ParadisoConnector())
     register_connector(MelkwegConnector())
     register_connector(AFASLiveConnector())
     register_connector(ZiggoDomeConnector())
     register_connector(TicketmasterNLConnector())
+    register_connector(JohanCruijffArenaConnector())
 
     from telegram import Update
     from telegram.ext import Application

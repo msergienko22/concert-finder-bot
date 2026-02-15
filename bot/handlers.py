@@ -229,7 +229,8 @@ async def cmd_sources(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
         "• Paradiso\n"
         "• Melkweg\n"
         "• AFAS Live\n"
-        "• Ziggo Dome"
+        "• Ziggo Dome\n"
+        "• Johan Cruijff ArenA"
     )
 
 

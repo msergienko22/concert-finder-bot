@@ -6,7 +6,7 @@ Single-user Telegram bot that checks for newly posted concert events in the Neth
 
 - Daily automated check at a configurable time (default 09:00 Europe/Amsterdam, DST-safe)
 - If the bot was offline at the scheduled time, it runs once on next startup when the last run was more than 6 hours ago (catch-up)
-- Sources: Ticketmaster NL, Paradiso, Melkweg, AFAS Live, Ziggo Dome
+- Sources: Ticketmaster NL, Paradiso, Melkweg, AFAS Live, Ziggo Dome, Johan Cruijff ArenA
 - Case-insensitive substring matching against your artists list
 - Deduping: one notification per (artist, venue, date)
 - SQLite persistence for settings and notification history

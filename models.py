@@ -13,6 +13,7 @@ class Source(str, Enum):
     MELKWEG = "melkweg"
     AFAS_LIVE = "afaslive"
     ZIGGO_DOME = "ziggodome"
+    JOHAN_CRUIJFF_ARENA = "johancruijffarena"
 
 
 @dataclass
