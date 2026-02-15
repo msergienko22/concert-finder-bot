@@ -257,6 +257,18 @@ async def cmd_dry_run(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     )
 
 
+async def on_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Route messages: onboarding step or unknown."""
+    if not await is_authorized(update):
+        if update.message:
+            await update.message.reply_text(REJECT_MESSAGE)
+        return
+    if await handle_onboarding_message(update, context):
+        return
+    if update.message:
+        await update.message.reply_text("Send /help for commands.")
+
+
 def register_handlers(application) -> None:
     application.add_handler(CommandHandler("start", cmd_start))
     application.add_handler(CommandHandler("help", cmd_help))
